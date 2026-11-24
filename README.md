@@ -1,5 +1,9 @@
 # MySpace – Personal Dashboard
 
+[![Live Demo](https://img.shields.io/badge/Vercel-Live_Demo-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://myspace-zeta-eight.vercel.app/)
+
+> **Live Deployment:** [https://myspace-zeta-eight.vercel.app/](https://myspace-zeta-eight.vercel.app/)
+
 A modern, secure personal productivity dashboard built with **React + Vite** (frontend) and **Node.js + Express** (backend), deployable on **GitHub + Vercel**.
 
 ## ✨ Features
