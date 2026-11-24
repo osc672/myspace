@@ -1,6 +1,6 @@
 // client/src/pages/Settings.jsx
 import React from 'react';
-import { Sun, Moon, Shield, Database, Info } from 'lucide-react';
+import { Sun, Moon, Shield, Database } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
@@ -111,22 +111,6 @@ export default function Settings() {
           <p style={{ marginTop: '0.5rem' }}>🔒 Data is namespaced by your Google account ID (<code>myspace_user_{'{sub}'}_*</code>), so each account has private, isolated data.</p>
           <p style={{ marginTop: '0.5rem' }}>💡 Logging out does not delete your data. It will be available again when you sign back in.</p>
           <p style={{ marginTop: '0.5rem' }}>⚠️ LocalStorage is device and browser-specific. Data does not sync between devices.</p>
-        </div>
-      </div>
-
-      {/* About */}
-      <div className="card mb-4">
-        <div className="card-header">
-          <div className="card-title">About MySpace</div>
-          <Info size={18} style={{ color: 'var(--color-primary-500)' }} />
-        </div>
-        <div className="flex gap-4" style={{ flexWrap: 'wrap' }}>
-          {[['Version', '1.0.0'], ['Frontend', 'React + Vite'], ['Backend', 'Node.js + Express'], ['Auth', 'Google OAuth 2.0'], ['Storage', 'LocalStorage'], ['Deployment', 'Vercel']].map(([k, v]) => (
-            <div key={k} style={{ flex: 1, minWidth: 140, background: 'var(--bg-input)', borderRadius: 8, padding: '0.75rem' }}>
-              <div className="text-xs text-muted">{k}</div>
-              <div style={{ fontWeight: 600, fontSize: '0.875rem', marginTop: '0.25rem' }}>{v}</div>
-            </div>
-          ))}
         </div>
       </div>
 
