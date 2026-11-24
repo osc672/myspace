@@ -34,7 +34,7 @@ export default function Settings() {
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+        <div className="theme-options-grid">
           {[
             { value: 'light', icon: Sun, label: 'Light Mode', desc: 'Clean and bright' },
             { value: 'dark',  icon: Moon, label: 'Dark Mode',  desc: 'Easy on the eyes' },

@@ -3,7 +3,7 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, CheckSquare, FileText, Target,
-  Calendar, Settings, User, LogOut, Zap,
+  Calendar, Settings, User, LogOut, Zap, X,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
@@ -35,11 +35,21 @@ export default function Sidebar({ open, onClose }) {
   return (
     <aside className={`sidebar ${open ? 'open' : ''}`}>
       {/* Brand */}
-      <div className="sidebar-brand">
-        <div className="sidebar-brand-icon">
-          <Zap size={22} color="#fff" />
+      <div className="sidebar-brand" style={{ justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div className="sidebar-brand-icon">
+            <Zap size={22} color="#fff" />
+          </div>
+          <span className="sidebar-brand-text">MySpace</span>
         </div>
-        <span className="sidebar-brand-text">MySpace</span>
+        <button
+          className="sidebar-close-btn"
+          onClick={onClose}
+          aria-label="Close sidebar"
+          style={{ color: '#fff', padding: '6px', cursor: 'pointer' }}
+        >
+          <X size={20} />
+        </button>
       </div>
 
       {/* Nav */}

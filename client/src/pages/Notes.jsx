@@ -1,6 +1,6 @@
 // client/src/pages/Notes.jsx
 import React, { useState, useEffect, useRef } from 'react';
-import { Plus, Search, Trash2, X, FileText, Save } from 'lucide-react';
+import { Plus, Search, Trash2, X, FileText, Save, ArrowLeft } from 'lucide-react';
 import { useNotes } from '../hooks/useNotes';
 import { useToast } from '../context/ToastContext';
 import ConfirmDialog from '../components/ConfirmDialog';
@@ -77,10 +77,10 @@ export default function Notes() {
         </button>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: selectedNote ? '320px 1fr' : '1fr', gap: '1rem', alignItems: 'start' }}>
+      <div className={`notes-layout ${selectedNote ? 'has-selected' : 'no-selected'}`}>
 
         {/* Notes list */}
-        <div>
+        <div className="notes-list-col">
           <div className="search-bar mb-4">
             <Search size={16} style={{ color: 'var(--text-muted)', flexShrink: 0 }} />
             <input placeholder="Search notes…" value={search} onChange={e => setSearch(e.target.value)} />
@@ -121,10 +121,17 @@ export default function Notes() {
 
         {/* Editor */}
         {selectedNote && (
-          <div className="card" style={{ position: 'sticky', top: 'calc(var(--navbar-height) + 1rem)' }}>
+          <div className="notes-editor-col card" style={{ position: 'sticky', top: 'calc(var(--navbar-height) + 1rem)' }}>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2">
-                <FileText size={16} style={{ color: 'var(--color-primary-500)' }} />
+                <button
+                  type="button"
+                  className="btn btn-secondary btn-sm"
+                  onClick={() => setSelectedId(null)}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.25rem', padding: '0.25rem 0.5rem', fontSize: '0.75rem' }}
+                >
+                  <ArrowLeft size={14} /> Back
+                </button>
                 <span className="text-sm text-secondary">{saved ? '✅ Saved' : '💾 Saving…'}</span>
               </div>
               <button className="btn btn-ghost btn-icon btn-sm" onClick={() => setSelectedId(null)} title="Close">

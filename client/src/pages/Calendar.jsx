@@ -70,7 +70,7 @@ export default function Calendar() {
         <p className="section-subtitle">View and plan tasks by date</p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '1.5rem', alignItems: 'start' }}>
+      <div className="calendar-layout">
         {/* Calendar */}
         <div className="card">
           {/* Month navigation */}

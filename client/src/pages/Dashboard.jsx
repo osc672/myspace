@@ -68,7 +68,7 @@ export default function Dashboard() {
       </div>
 
       {/* Main grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+      <div className="dashboard-main-grid">
 
         {/* Daily Productivity */}
         <div className="card">
@@ -149,7 +149,7 @@ export default function Dashboard() {
           <div className="card-header">
             <div className="card-title">Quick Navigation</div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+          <div className="dashboard-quick-nav">
             {[
               { to: '/tasks',    icon: CheckSquare, label: 'Tasks',      count: taskStats.pending, color: '#6366f1', bg: 'var(--color-primary-50)' },
               { to: '/notes',    icon: FileText,    label: 'Notes',      count: notes.length,      color: '#7c3aed', bg: '#f5f3ff' },
