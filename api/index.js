@@ -35,12 +35,14 @@ const app = express();
 // ─── CORS Configuration ───────────────────────────────────────────────────────
 const allowedOrigins = [
   process.env.FRONTEND_ORIGIN || 'http://localhost:5173',
-  'http://localhost:4173', // Vite preview
+  'http://localhost:4173',
 ];
 
-// In production, also allow the same Vercel domain
 if (process.env.VERCEL_URL) {
   allowedOrigins.push(`https://${process.env.VERCEL_URL}`);
+}
+if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+  allowedOrigins.push(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`);
 }
 if (process.env.PRODUCTION_URL) {
   allowedOrigins.push(process.env.PRODUCTION_URL);
@@ -48,9 +50,24 @@ if (process.env.PRODUCTION_URL) {
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (e.g. curl, Postman, same-origin)
+    // Allow requests with no origin (e.g. curl, server-to-server, same-origin)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
+
+    try {
+      const hostname = new URL(origin).hostname;
+      // Allow any Vercel domain, localhost, or explicit origin
+      if (
+        allowedOrigins.includes(origin) ||
+        hostname.endsWith('.vercel.app') ||
+        hostname === 'localhost' ||
+        hostname === '127.0.0.1'
+      ) {
+        return callback(null, true);
+      }
+    } catch {
+      // invalid URL format
+    }
+
     callback(new Error(`CORS: origin ${origin} not allowed`));
   },
   credentials: true,
